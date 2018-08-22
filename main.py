@@ -3,7 +3,7 @@ import requests
 from ClimaTempo import ClimaTempo
 from Util import *
 from ImageSwitcher import ImageSwitcher
-import os 
+
 import datetime
 
 token = '77f38866b9b2a40baba7ac91486db242'
@@ -23,5 +23,3 @@ if(api_esta_funcionando(response)):
     ImageSwitcher.switch_image(hora,temperatura,sensacao,humidade)
 else:
     print('algum problema na api')
-
-

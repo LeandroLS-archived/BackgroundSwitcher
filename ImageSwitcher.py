@@ -1,6 +1,7 @@
 import ctypes
 import os
 import datetime
+import random
 from PIL import Image, ImageDraw, ImageFont
 
 class ImageSwitcher:
@@ -14,11 +15,20 @@ class ImageSwitcher:
     
     def pega_imagem(self, hour):
         if(hour < 12):
-            return self.pasta_manha+'\\manhã.jpeg'
+            imagem = self.__imagem_randomica(self.pasta_manha)
+            return self.pasta_manha+'\\'+imagem
         elif(hour >= 12 and hour < 18):
-            return self.pasta_tarde+'\\tarde.jpg'
+            imagem = self.__imagem_randomica(self.pasta_tarde)
+            return self.pasta_tarde+'\\'+imagem
         elif(hour >= 18):
-            return self.pasta_noite+'\\noite.jpeg'
+            imagem = self.__imagem_randomica(self.pasta_noite)
+            return self.pasta_noite+'\\'+imagem
+    
+    def __imagem_randomica(self, pasta):
+        lista_de_imagens = os.listdir(pasta)
+        tamanho_lista_imagens = len(lista_de_imagens)
+        numero_randomico = random.randrange(0,tamanho_lista_imagens)
+        return lista_de_imagens[numero_randomico]
 
     def desenha_na_imagem(self, imagem, hora, temperatura, sensacao, humidade):
         imagem = Image.open(imagem)
