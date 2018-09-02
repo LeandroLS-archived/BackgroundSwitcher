@@ -9,20 +9,24 @@ class ImageSwitcher:
         self.pasta_manha = os.getcwd()+'\\imagens\\Manhã'
         self.pasta_tarde = os.getcwd()+'\\imagens\\Tarde'
         self.pasta_noite = os.getcwd()+'\\imagens\\Noite'
+        self.pasta_madrugada = os.getcwd()+'\\imagens\\Madrugada'
         self.pasta_imagem_desenhada = os.getcwd()+'\\imagens\\Imagem Desenhada'
         self.SPI_SETDESKWALLPAPER = 20 
         print(__file__)
     
     def pega_imagem(self, hour):
-        if(hour < 12):
+        if(hour <= 12 and hour >= 6 ):
             imagem = self.__imagem_randomica(self.pasta_manha)
             return self.pasta_manha+'\\'+imagem
         elif(hour >= 12 and hour < 18):
             imagem = self.__imagem_randomica(self.pasta_tarde)
             return self.pasta_tarde+'\\'+imagem
-        elif(hour >= 18):
+        elif(hour >= 18 and hour >= 0):
             imagem = self.__imagem_randomica(self.pasta_noite)
             return self.pasta_noite+'\\'+imagem
+        else:
+            imagem = self.__imagem_randomica(self.pasta_madrugada)
+            return self.pasta_madrugada+'\\'+imagem
     
     def __imagem_randomica(self, pasta):
         lista_de_imagens = os.listdir(pasta)
